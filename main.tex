@@ -27,8 +27,8 @@
 Software testing and debugging are critical skills in software engineering, yet students often perceive them as tedious and struggle to bridge theory and practice.
 This paper presents an empirical classroom study evaluating \emph{Sojourner under Sabotage}, a browser-based serious game where students write JUnit tests, achieve line coverage, detect mutations, and debug sabotaged spaceship components across seven progressively complex levels.
 We deployed a self-hosted instance for 22 master's students and collected pre/post MCQ assessments (11~items), self-confidence Likert scales, post-session perception questionnaires, open-ended feedback, and in-game behavioral telemetry (3,226 events across 14 event types).
-Results show that MCQ scores improved from 8.30 to 9.15/11 ($r = 0.336$, medium effect), with low-baseline students benefiting most (normalized gain = 0.50).
-Self-confidence in analyzing test failures increased ($+0.40$, 7~improved, 0~declined), 95\% of students agreed the activity helped them understand testing vs.\ debugging, and 86\% found it engaging.
+Results show that MCQ scores improved from 8.29 to 9.14/11 ($r = 0.349$, medium effect), with low-baseline students benefiting most (normalized gain = 0.50).
+Self-confidence in analyzing test failures increased ($+0.38$, 7~improved, 0~declined), 95\% of students agreed the activity helped them understand testing vs.\ debugging, and 86\% found it engaging.
 Telemetry further corroborated these findings: game progression correlated significantly with MCQ gains (Spearman $\rho = 0.633$, $p = 0.007$), confirming that deeper engagement produces greater learning.
 We discuss implications for game-based software testing education, the ceiling effect as a methodological lesson, and the equity benefits of scaffolded learning environments.
 \end{abstract}
@@ -166,32 +166,32 @@ Telemetry metrics (rooms completed, test executions, debugging events) were extr
 
 \subsubsection{MCQ Knowledge Assessment}
 
-Table~\ref{tab:mcq} summarizes the MCQ results ($N = 20$ matched pairs, 22 pre, 21 post).
-The mean score increased from 8.30 to 9.15 out of 11 ($\Delta = +0.85$).
-The Wilcoxon test showed a positive trend ($Z = 1.503$, $p = 0.104$, $r = 0.336$, medium effect).
+Table~\ref{tab:mcq} summarizes the MCQ results ($N = 21$ matched pairs, 22 pre, 21 post).
+The mean score increased from 8.29 to 9.14 out of 11 ($\Delta = +0.86$).
+The Wilcoxon test showed a positive trend ($Z = 1.601$, $p = 0.170$, $r = 0.349$, medium effect).
 Nevertheless, the medium effect size, positive normalized gains, and consistent improvements across complementary measures suggest meaningful educational benefits despite the lack of statistical significance.
 
 \begin{table}[htbp]
-\caption{MCQ Scores: Pre vs.\ Post ($N = 20$)}
+\caption{MCQ Scores: Pre vs.\ Post ($N = 21$)}
 \label{tab:mcq}
 \centering
 \begin{tabular}{lccc}
 \toprule
  & Pre & Post & $\Delta$ \\
 \midrule
-Mean & 8.30 & 9.15 & +0.85 \\
-Improved / Same / Declined & \multicolumn{3}{c}{9 / 7 / 4} \\
-Wilcoxon $Z$ ($p$) & \multicolumn{3}{c}{1.503 (0.104)} \\
-Effect size $r$ & \multicolumn{3}{c}{0.336 (medium)} \\
-Normalized gain & \multicolumn{3}{c}{0.242} \\
+Mean & 8.29 & 9.14 & +0.86 \\
+Improved / Same / Declined & \multicolumn{3}{c}{10 / 7 / 4} \\
+Wilcoxon $Z$ ($p$) & \multicolumn{3}{c}{1.601 (0.170)} \\
+Effect size $r$ & \multicolumn{3}{c}{0.349 (medium)} \\
+Normalized gain & \multicolumn{3}{c}{0.246} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Sub-group analysis (Table~\ref{tab:subgroup}) reveals that low-baseline students ($< 8$) gained substantially (normalized gain = 0.50), while high-baseline students ($\geq 10$) showed no change---confirming the ceiling effect and suggesting an equity benefit from the game's scaffolding.
+Sub-group analysis (Table~\ref{tab:subgroup}) reveals that low-baseline students ($< 8$) gained substantially (normalized gain = 0.50), while high-baseline students ($\geq 10$) showed no change, and mid-baseline students ($N=15$) showed moderate gains (0.244)---confirming the ceiling effect and suggesting an equity benefit from the game's scaffolding.
 
 \begin{table}[htbp]
-\caption{MCQ Sub-Group Analysis by Baseline}
+\caption{MCQ Sub-Group Analysis by Baseline ($N = 21$)}
 \label{tab:subgroup}
 \centering
 \begin{tabular}{lcccc}
@@ -199,10 +199,10 @@ Sub-group analysis (Table~\ref{tab:subgroup}) reveals that low-baseline students
 Group & $N$ & Pre & Post & Norm.\ Gain \\
 \midrule
 Low ($< 8$) & 3 & 5.67 & 9.00 & 0.500 \\
-Mid (8--9) & 14 & 8.43 & 8.93 & 0.238 \\
+Mid (8--9) & 15 & 8.40 & 8.93 & 0.244 \\
 High ($\geq 10$) & 3 & 10.33 & 10.33 & 0.000 \\
 \midrule
-Overall & 20 & 8.30 & 9.15 & 0.242 \\
+Overall & 21 & 8.29 & 9.14 & 0.246 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -219,11 +219,11 @@ Items with near-perfect pre-test accuracy showed no change.
 
 \subsubsection{Self-Confidence}
 
-All four self-confidence items improved (Table~\ref{tab:confidence}), with the largest gain in ``analyzing test failures'' ($+0.40$, 7~improved, 0~declined).
+All four self-confidence items improved (Table~\ref{tab:confidence}), with the largest gain in ``analyzing test failures'' ($+0.38$, 7~improved, 0~declined).
 Internal consistency was good (Cronbach $\alpha_{pre} = 0.811$, $\alpha_{post} = 0.839$).
 
 \begin{table}[htbp]
-\caption{Self-Confidence Shift ($N = 20$)}
+\caption{Self-Confidence Shift ($N = 21$)}
 \label{tab:confidence}
 \centering
 \small
@@ -231,10 +231,10 @@ Internal consistency was good (Cronbach $\alpha_{pre} = 0.811$, $\alpha_{post} =
 \toprule
 Item & Pre & Post & $\Delta$ & $\uparrow/\!=\!/\!\downarrow$ \\
 \midrule
-Understand concepts & 3.45 & 3.60 & +0.15 & 3/15/2 \\
-Write test case & 3.50 & 3.75 & +0.25 & 5/14/1 \\
-Identify/debug errors & 3.50 & 3.70 & +0.20 & 4/14/2 \\
-Analyze test failures & 3.25 & 3.65 & +0.40 & 7/13/0 \\
+Understand concepts & 3.43 & 3.57 & +0.14 & 3/16/2 \\
+Write test case & 3.48 & 3.71 & +0.24 & 5/15/1 \\
+Identify/debug errors & 3.48 & 3.67 & +0.19 & 4/15/2 \\
+Analyze test failures & 3.24 & 3.62 & +0.38 & 7/14/0 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -291,11 +291,11 @@ Debugging Complexity & Comments on locating and repairing faults & Debugging rem
 
 \subsection{RQ3: Behavioral Engagement (Telemetry)}
 
-The game recorded 3,226~events from 25~active players (Table~\ref{tab:telemetry}).
+The game recorded 3,226~events from 22~active players (Table~\ref{tab:telemetry}).
 Students with questionnaire matches averaged 46~minutes of active gameplay.
 
 \begin{table}[htbp]
-\caption{Sojourner Telemetry: Event Distribution ($N = 25$ players)}
+\caption{Sojourner Telemetry: Event Distribution ($N = 22$ players)}
 \label{tab:telemetry}
 \centering
 \small
@@ -358,7 +358,7 @@ Our study adds behavioral telemetry analysis---absent from the original evaluati
 
 \subsection{The Ceiling Effect}
 
-The non-significant MCQ improvement ($p = 0.104$) should not be interpreted as ineffectiveness.
+The non-significant MCQ improvement ($p = 0.170$) should not be interpreted as ineffectiveness.
 The pre-test mean of 8.3/11 (75\%) left limited room for improvement.
 Sub-group analysis confirms that students who needed help most benefited most (normalized gain = 0.50 for low-baseline students).
 Per-item analysis shows gains concentrated on concepts directly practiced in the game.
@@ -433,7 +433,7 @@ These results provide independent evidence that Sojourner under Sabotage is an e
 Future work should evaluate the game in larger, multi-institutional studies with more discriminating knowledge instruments, and investigate long-term retention of testing skills.
 
 \section*{Data Availability}
-The replication package is available at: \url{https://github.com/aazaadef/sojourner-fandango-replication}
+The replication package---including questionnaire data, in-game telemetry, and generated figures---is publicly available at: \url{https://github.com/aazaadef/Sojourner}
 
 \section*{Acknowledgment}
 This work was supported by FCT -- Funda\c{c}\~{a}o para a Ci\^{e}ncia e Tecnologia, I.P.\ by project reference UIDB/50008/2020 (DOI: \url{https://doi.org/10.54499/UIDB/50008/2020}) and by the doctoral grant PRT/BD/155023/2023.
