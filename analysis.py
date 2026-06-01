@@ -24,11 +24,22 @@ from pathlib import Path
 # Paths — adjust if running from a different directory
 # ---------------------------------------------------------------------------
 BASE = Path(__file__).resolve().parent
-PRE_CSV  = BASE / "data_pre_questionnaire.csv"
-POST_CSV = BASE / "data_post_questionnaire.csv"
-TELE_JSON = BASE / "data_telemetry.json"
+ROOT = BASE.parent   # Sorjouner_under_SABOTGE/
 FIG_DIR  = BASE / "figures"
 FIG_DIR.mkdir(exist_ok=True)
+
+# Raw data from results/ (authoritative source)
+PRE_CSV   = ROOT / "results" / "Software Testing Knowledge & Background Assessment.csv"
+POST_CSV  = ROOT / "results" / "Post-Session Questionnaire: Introduction to Software Testing Activity.csv"
+TELE_JSON = ROOT / "results" / "data.json"
+
+# Fallback: replication-package copies
+if not PRE_CSV.exists():
+    PRE_CSV  = ROOT / "replication-package" / "data" / "sojourner_pre.csv"
+if not POST_CSV.exists():
+    POST_CSV = ROOT / "replication-package" / "data" / "sojourner_post.csv"
+if not TELE_JSON.exists():
+    TELE_JSON = ROOT / "replication-package" / "data" / "telemetry.json"
 
 # ---------------------------------------------------------------------------
 # Correct answers for 11 MCQ items
@@ -237,27 +248,46 @@ print("\n" + "=" * 60)
 print("TELEMETRY ANALYSIS")
 print("=" * 60)
 
-EXCLUDE = {"AAZAADE","ENRICO","ADMIN","DIMS","FASM","GUIVICENTE10","GUSTAVOPINA",
-           "JPKIKO","RAINHA5","RIVALDO26","RODRIGOFSTX","TIAGO195","4507C"}
+# Username → survey-code mapping (identified post-hoc from game registration data)
+# Students who registered with their name instead of the anonymous participant code.
+NAME_TO_CODE = {
+    "TIAGO195":    "0209E",
+    "GUSTAVOPINA": "9709C",
+    "RODRIGOFSTX": "4309A",
+    "RIVALDO26":   "8305J",
+    "ENRICO":      "5707C",
+    "FASM":        "7105P",
+    "DIMS":        "8701S",
+    "RAINHA5":     "2701L",   # duplicate account; events merged into 2701L
+    "GUIVICENTE10":"4008A",   # duplicate account; events merged into 4008A
+}
+# Accounts to discard entirely (admin, instructor, test)
+HARD_EXCLUDE = {"AAZAADE", "ADMIN", "4507C"}
+
+def resolve_user(username):
+    u = username.upper()
+    if u in HARD_EXCLUDE:
+        return None
+    return NAME_TO_CODE.get(u, u)
 
 tele = json.loads(TELE_JSON.read_text())
 
-user_events   = defaultdict(list)
-user_max_room = defaultdict(int)
+user_events     = defaultdict(list)
+user_max_room   = defaultdict(int)
 user_test_execs = defaultdict(int)
 
 for e in tele:
-    u = e["user"]["username"].upper()
-    if u in EXCLUDE:
+    code = resolve_user(e["user"]["username"])
+    if code is None:
         continue
-    user_events[u].append(e)
+    user_events[code].append(e)
     if e["eventType"] == "GameProgressionChangedEvent":
         prog = json.loads(e["json"]).get("progression", {})
-        user_max_room[u] = max(user_max_room[u], prog.get("room", 0))
-    elif e["eventType"] == "test-executed":
-        user_test_execs[u] += 1
+        user_max_room[code] = max(user_max_room[code], prog.get("room", 0))
+    elif e["eventType"] in ("test-executed", "TestExecutedEvent"):
+        user_test_execs[code] += 1
 
-# Spearman: progression vs MCQ gain (N=14 matched)
+# Spearman: progression vs MCQ gain (N=21 matched after mapping)
 tele_matched = sorted(set(pre_scores) & set(post_scores) & set(user_max_room))
 rooms   = [user_max_room[c]              for c in tele_matched]
 mcq_dlt = [post_scores[c]-pre_scores[c] for c in tele_matched]

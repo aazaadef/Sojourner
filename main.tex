@@ -26,10 +26,10 @@
 \begin{abstract}
 Software testing and debugging are critical skills in software engineering, yet students often perceive them as tedious and struggle to bridge theory and practice.
 This paper presents an empirical classroom study evaluating \emph{Sojourner under Sabotage}, a browser-based serious game where students write JUnit tests, achieve line coverage, detect mutations, and debug sabotaged spaceship components across seven progressively complex levels.
-We deployed a self-hosted instance for 22 master's students and collected pre/post MCQ assessments (11~items), self-confidence Likert scales, post-session perception questionnaires, open-ended feedback, and in-game behavioral telemetry (3,226 events across 14 event types).
+We deployed a self-hosted instance for 22 master's students and collected pre/post MCQ assessments (11~items), self-confidence Likert scales, post-session perception questionnaires, open-ended feedback, and in-game behavioral telemetry (3,161 events across 14 event types).
 Results show that MCQ scores improved from 8.29 to 9.14/11 ($r = 0.349$, medium effect), with low-baseline students benefiting most (normalized gain = 0.50).
 Self-confidence in analyzing test failures increased ($+0.38$, 7~improved, 0~declined), 95\% of students agreed the activity helped them understand testing vs.\ debugging, and 86\% found it engaging.
-Telemetry further corroborated these findings: game progression correlated significantly with MCQ gains (Spearman $\rho = 0.633$, $p = 0.007$), confirming that deeper engagement produces greater learning.
+Telemetry further corroborated these findings: game progression correlated significantly with MCQ gains (Spearman $\rho = 0.549$, $p = 0.006$), confirming that deeper engagement produces greater learning.
 We discuss implications for game-based software testing education, the ceiling effect as a methodological lesson, and the equity benefits of scaffolded learning environments.
 \end{abstract}
 
@@ -51,7 +51,7 @@ Players take on the role of spaceship crew members who must detect and repair sa
 An initial evaluation by the game's creators with 79~students showed over 80\% enjoyment and measurable improvements in test coverage and debugging skills~\cite{straubinger2025sojourner}.
 
 This paper extends that work through an independent empirical evaluation in a different institutional context.
-We deployed a self-hosted instance for 22 master's students at the Universidade da Beira Interior, Portugal, and collected a rich dataset combining pre/post knowledge assessments, self-confidence measures, perception questionnaires, open-ended feedback, and---uniquely---fine-grained in-game behavioral telemetry (3,226 recorded events across 14 types).
+We deployed a self-hosted instance for 22 master's students at the Universidade da Beira Interior, Portugal, and collected a rich dataset combining pre/post knowledge assessments, self-confidence measures, perception questionnaires, open-ended feedback, and---uniquely---fine-grained in-game behavioral telemetry (3,161 recorded events across 14 types).
 This triangulated design enables us to examine not only \emph{whether} the game improves learning outcomes, but also \emph{how} students engage with the testing and debugging tasks during gameplay.
 
 The study is guided by three research questions:
@@ -291,7 +291,7 @@ Debugging Complexity & Comments on locating and repairing faults & Debugging rem
 
 \subsection{RQ3: Behavioral Engagement (Telemetry)}
 
-The game recorded 3,226~events from 22~active players (Table~\ref{tab:telemetry}).
+The game recorded 3,161~events from 22~active players (Table~\ref{tab:telemetry}).
 Students with questionnaire matches averaged 46~minutes of active gameplay.
 
 \begin{table}[htbp]
@@ -303,22 +303,22 @@ Students with questionnaire matches averaged 46~minutes of active gameplay.
 \toprule
 Event Type & Meaning & Count \\
 \midrule
-Room unlocked & Player moved to a new level & 1,251 \\
-Game progression & Room phase changed (e.g., talk $\to$ test $\to$ debug) & 404 \\
-Conversation & Dialogue with robot companion completed & 304 \\
-Test modified & Student edited test code in the editor & 272 \\
-Test executed & Tests compiled and ran successfully & 211 \\
-Test exec.\ failed & Compilation error or test assertion failed & 115 \\
-Component fixed & Student correctly repaired sabotaged code & 100 \\
-CUT modified & Student edited the class-under-test during debugging & 84 \\
-Mutation detected & Student's tests caught the injected fault & 66 \\
-Tests activated & Tests reached $\geq$50\% coverage and were set to monitor & 58 \\
-Debug started & Sabotage detected; student entered debugging mode & 55 \\
-Component destroyed & Sabotage went undetected; component damaged & 52 \\
-Game started & Player logged in and began a session & 45 \\
-Hidden test added & System provided a hint test after undetected sabotage & 34 \\
+Room unlocked & Player moved to a new level & 1,297 \\
+Game progression & Room phase changed (e.g., talk $\to$ test $\to$ debug) & 420 \\
+Conversation & Dialogue with robot companion completed & 319 \\
+Test modified & Student edited test code in the editor & 276 \\
+Test executed & Tests compiled and ran successfully & 219 \\
+Test exec.\ failed & Compilation error or test assertion failed & 113 \\
+Component fixed & Student correctly repaired sabotaged code & 106 \\
+CUT modified & Student edited the class-under-test during debugging & 89 \\
+Mutation detected & Student's tests caught the injected fault & 68 \\
+Tests activated & Tests reached $\geq$50\% coverage and were set to monitor & 61 \\
+Debug started & Sabotage detected; student entered debugging mode & 58 \\
+Component destroyed & Sabotage went undetected; component damaged & 56 \\
+Game started & Player logged in and began a session & 43 \\
+Hidden test added & System provided a hint test after undetected sabotage & 36 \\
 \midrule
-\textbf{Total} & & \textbf{3,226} \\
+\textbf{Total} & & \textbf{3,161} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -332,16 +332,16 @@ The progression funnel (Fig.~\ref{fig:funnel}) shows that all students started R
 \label{fig:funnel}
 \end{figure}
 
-The 52~\emph{ComponentDestroyedEvent}s indicate cases where students' tests failed to detect sabotage, triggering hidden tests as scaffolding (34~events).
+The 56~\emph{ComponentDestroyedEvent}s indicate cases where students' tests failed to detect sabotage, triggering hidden tests as scaffolding (36~events).
 This confirms the game's adaptive support mechanism was actively functioning.
 
-An exploratory correlation analysis ($N = 14$ students with matched telemetry and questionnaire data) revealed a significant positive association between game progression and MCQ gains (Spearman $\rho = 0.633$, $p = 0.007$; Fig.~\ref{fig:correlation}).
-Progression was also strongly correlated with test executions ($\rho = 0.860$, $p < 0.001$), confirming that advancement reflects genuine testing activity.
+An exploratory correlation analysis ($N = 21$ students with matched telemetry and questionnaire data) revealed a significant positive association between game progression and MCQ gains (Spearman $\rho = 0.549$, $p = 0.006$; Fig.~\ref{fig:correlation}).
+Progression was also strongly correlated with test executions ($\rho = 0.912$, $p < 0.001$), confirming that advancement reflects genuine testing activity.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_correlation.pdf}
-\caption{(a) Game progression vs.\ MCQ gains ($\rho = 0.633$, $p = 0.007$). (b) Progression vs.\ test executions ($\rho = 0.860$, $p < 0.001$).}
+\caption{(a) Game progression vs.\ MCQ gains ($\rho = 0.549$, $p = 0.006$). (b) Progression vs.\ test executions ($\rho = 0.912$, $p < 0.001$).}
 \label{fig:correlation}
 \end{figure}
 
@@ -367,8 +367,8 @@ Future studies should use more challenging instruments calibrated to the target 
 \subsection{Behavioral Telemetry as Supporting Evidence}
 
 Beyond the questionnaire-based findings, the game's telemetry provides objective behavioral evidence.
-The significant correlation between progression and MCQ gains ($\rho = 0.633$, $p = 0.007$) provides evidence that the game's design---where advancement requires genuine testing and debugging skill---translates behavioral engagement into measurable learning.
-The 34~hidden-test scaffolding events confirm that the game's adaptive support mechanism actively assisted struggling students, and the strong correlation between progression and test executions ($\rho = 0.860$) rules out passive navigation as an explanation.
+The significant correlation between progression and MCQ gains ($\rho = 0.549$, $p = 0.006$) provides evidence that the game's design---where advancement requires genuine testing and debugging skill---translates behavioral engagement into measurable learning.
+The 36~hidden-test scaffolding events confirm that the game's adaptive support mechanism actively assisted struggling students, and the strong correlation between progression and test executions ($\rho = 0.912$) rules out passive navigation as an explanation.
 This telemetry-based analysis demonstrates a practical advantage of game-based platforms over traditional exercises: built-in learning analytics that enable formative assessment without additional instrumentation.
 
 \subsection{Qualitative Insights from Student Feedback}
@@ -416,7 +416,7 @@ The study was conducted with a single cohort ($N = 22$) at one institution, limi
 Despite these limitations, the study provides useful exploratory evidence about the educational potential of Sojourner under Sabotage, and the combination of knowledge questions, self-confidence items, perception constructs, and telemetry allows for a richer understanding of students' learning experience.
 
 \textbf{Reliability.}
-The sample size ($N = 22$) limits statistical power, and the correlation analysis ($N = 14$ matched students) is exploratory.
+The sample size ($N = 22$) limits statistical power, and the correlation analysis ($N = 21$ matched students) is exploratory.
 Cronbach's $\alpha$ values for self-confidence ($\geq 0.81$), perceived learning ($0.87$), and engagement ($0.75$) indicate acceptable to good internal consistency.
 
 % ===========================================================================
@@ -427,7 +427,7 @@ Cronbach's $\alpha$ values for self-confidence ($\geq 0.81$), perceived learning
 This paper presented an empirical evaluation of \emph{Sojourner under Sabotage} for teaching software testing and debugging to master's students.
 The game produced high engagement (86\%), strong perceived learning (95\% for testing vs.\ debugging), and positive self-confidence shifts.
 While MCQ gains were limited by a ceiling effect, sub-group analysis revealed that low-baseline students benefited substantially (normalized gain = 0.50).
-Behavioral telemetry from 3,226 events further supported these findings, revealing a significant correlation between game progression and learning gains ($\rho = 0.633$, $p = 0.007$).
+Behavioral telemetry from 3,161 events further supported these findings, revealing a significant correlation between game progression and learning gains ($\rho = 0.549$, $p = 0.006$).
 
 These results provide independent evidence that Sojourner under Sabotage is an effective and engaging tool for software testing education, with built-in telemetry enabling formative assessment.
 Future work should evaluate the game in larger, multi-institutional studies with more discriminating knowledge instruments, and investigate long-term retention of testing skills.
