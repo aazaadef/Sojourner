@@ -24,13 +24,10 @@
 \maketitle
 
 \begin{abstract}
-Software testing and debugging are critical skills in software engineering, yet students often perceive them as tedious and struggle to bridge theory and practice.
-This paper presents an empirical classroom study evaluating \emph{Sojourner under Sabotage}, a browser-based serious game where students write JUnit tests, achieve line coverage, detect mutations, and debug sabotaged spaceship components across seven progressively complex levels.
-We deployed a self-hosted instance for 22 master's students and collected pre/post MCQ assessments (11~items), self-confidence Likert scales, post-session perception questionnaires, open-ended feedback, and in-game behavioral telemetry (3,161 events across 14 event types).
-Results show that MCQ scores improved from 8.29 to 9.14/11 ($r = 0.349$, medium effect), with low-baseline students benefiting most (normalized gain = 0.50).
-Self-confidence in analyzing test failures increased ($+0.38$, 7~improved, 0~declined), 95\% of students agreed the activity helped them understand testing vs.\ debugging, and 86\% found it engaging.
-Telemetry further corroborated these findings: game progression correlated significantly with MCQ gains (Spearman $\rho = 0.549$, $p = 0.006$), confirming that deeper engagement produces greater learning.
-We discuss implications for game-based software testing education, the ceiling effect as a methodological lesson, and the equity benefits of scaffolded learning environments.
+Software testing and debugging matter a lot in software engineering, but students often see them as boring, and it can be hard for them to turn theory into real skills. To make the experience more practical, we ran a classroom study with \emph{Sojourner under Sabotage}, a browser-based serious game where students write JUnit tests, build up line coverage, spot mutations, and debug sabotaged spaceship components through seven levels that get harder as they progress. We set up a self-hosted version of the game for 22 master's students. During the study, we collected pre- and post-session multiple-choice quizzes (11 questions), confidence ratings, post-game surveys, open-ended feedback, and detailed in-game telemetry: 3,161 events across 14 event types. The study found that multiple-choice quiz scores went up from 8.29 to 9.14 out of 11, which represents a medium effect size ($r = 0.349$). The biggest improvement was seen among students who had lower initial scores (normalized gain = 0.50). More students became confident in their test analysis skills ($+0.38$, 7~improved, 0~declined). Also, around all students (95\%) agreed that the activity improved their understanding of the difference between testing and debugging, and 86\% found it engaging. In addition, telemetry showed that those who progressed further in the game improved more on their quizzes, with MCQ gains correlating significantly with game progression (Spearman $\rho = 0.549$, $p = 0.006$). This demonstrates a deep connection between progress and learning outcomes. This paper demonstrates how game-based training can enhance software testing skills, but also highlights the ceiling effect, a key lesson of the method. We also show that structured learning helps promote equity in education.
+
+
+% Results show that MCQ scores improved from 8.29 to 9.14/11 ($r = 0.349$, medium effect), with low-baseline students benefiting most (normalized gain = 0.50). Self-confidence in analyzing test failures increased ($+0.38$, 7~improved, 0~declined), 95\% of students agreed the activity helped them understand testing vs.\ debugging, and 86\% found it engaging. Telemetry further corroborated these findings: game progression correlated significantly with MCQ gains (Spearman $\rho = 0.549$, $p = 0.006$), confirming that deeper engagement produces greater learning. We discuss implications for game-based software testing education, the ceiling effect as a methodological lesson, and the equity benefits of scaffolded learning environments.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -41,15 +38,13 @@ Software Testing Education, Serious Games, Unit Testing, Debugging, Gamification
 \section{Introduction}
 \label{sec:intro}
 % ===========================================================================
-
-Software testing and debugging are essential skills in software engineering, yet students frequently perceive them as tedious and secondary to programming~\cite{straubinger2023survey, garousi2020testing}.
-Traditional lecture-based approaches struggle to engage learners, leading to a persistent gap between theoretical knowledge and practical testing competency~\cite{mccauley2008debugging, jamil2016testing}.
-Serious games have emerged as a promising alternative, embedding testing tasks within narrative-driven gameplay to leverage intrinsic motivation and immediate feedback~\cite{connolly2012systematic, blanco2023gamification}.
-
+In software engineering, testing and debugging skills are crucial, but students often find them boring and tedious compared to coding ~\cite{straubinger2023survey, garousi2020testing}. The traditional lecture-based teaching has a hard time keeping their attention and creates a large gap between theoretical understanding and real-world application in tests ~\cite{mccauley2008debugging, jamil2016testing}. For this reason, software game-based teaching can recreate test tasks in fun, narrative-driven gameplay and be more effective than traditional teaching with immediate and tangible feedback ~\cite{connolly2012systematic, blanco2023gamification}.
+% Software testing and debugging are essential skills in software engineering, yet students frequently perceive them as tedious and secondary to programming~\cite{straubinger2023survey, garousi2020testing}.
+% Traditional lecture-based approaches struggle to engage learners, leading to a persistent gap between theoretical knowledge and practical testing competency~\cite{mccauley2008debugging, jamil2016testing}.
+% Serious games have emerged as a promising alternative, embedding testing tasks within narrative-driven gameplay to leverage intrinsic motivation and immediate feedback~\cite{connolly2012systematic, blanco2023gamification}.
 \emph{Sojourner under Sabotage}~\cite{straubinger2025sojourner} is a browser-based serious game designed to teach software testing and debugging interactively.
 Players take on the role of spaceship crew members who must detect and repair sabotaged systems by writing JUnit tests, achieving line coverage, and debugging mutated code across seven progressively complex levels.
 An initial evaluation by the game's creators with 79~students showed over 80\% enjoyment and measurable improvements in test coverage and debugging skills~\cite{straubinger2025sojourner}.
-
 This paper extends that work through an independent empirical evaluation in a different institutional context.
 We deployed a self-hosted instance for 22 master's students at the Universidade da Beira Interior, Portugal, and collected a rich dataset combining pre/post knowledge assessments, self-confidence measures, perception questionnaires, open-ended feedback, and---uniquely---fine-grained in-game behavioral telemetry (3,161 recorded events across 14 types).
 This triangulated design enables us to examine not only \emph{whether} the game improves learning outcomes, but also \emph{how} students engage with the testing and debugging tasks during gameplay.
@@ -65,7 +60,7 @@ While RQ1 and RQ2 constitute the primary evaluation, RQ3 provides additional beh
 The contributions of this paper are threefold.
 First, we provide an independent empirical evaluation of \emph{Sojourner under Sabotage} in a different institutional and cultural context from the original study.
 Second, we investigate learning outcomes, confidence development, and student perceptions through a triangulated evaluation design combining knowledge tests, self-confidence scales, perception questionnaires, open-ended feedback, and in-game telemetry.
-Third, we extend previous work through telemetry-based behavioral analysis, providing objective evidence linking gameplay progression to learning gains---a dimension absent from prior evaluations of this game.
+Third, we build on previous work by using telemetry data to analyze how students behaved during the game. This gave us more objective evidence of the link between gameplay progression and learning gains---a perspective that was missing from earlier evaluations of this game.
 
 % ===========================================================================
 \section{Background and Related Work}
@@ -116,7 +111,6 @@ Participation in the evaluation was voluntary, anonymous, and conducted under in
 \emph{Sojourner under Sabotage} is a browser-based serious game in which players detect and repair sabotaged spaceship systems through unit testing and debugging.
 The game consists of seven levels, each structured as a cycle: (1)~the robot companion introduces a component; (2)~the player writes JUnit tests in an integrated editor; (3)~once tests reach $\geq$50\% line coverage, they are activated to monitor for sabotage; (4)~the system introduces a mutation (sabotage); (5)~if the player's tests detect the mutation, debugging begins; (6)~the player locates and fixes the fault.
 If the mutation goes undetected, the component is ``destroyed'' and the system provides a hidden test as scaffolding.
-
 We deployed a self-hosted instance on the research group's infrastructure.
 Students accessed the game via anonymous accounts whose usernames matched their questionnaire participant codes, enabling per-student linkage across telemetry, pre-test, and post-test data.
 
@@ -125,18 +119,16 @@ Students accessed the game via anonymous accounts whose usernames matched their 
 To support the classroom study, we deployed a self-hosted instance of \emph{Sojourner under Sabotage} on the university's internal server infrastructure, making the game accessible to all enrolled students through their institutional network.
 Students accessed the platform via individual anonymous accounts, generated in bulk using the game's administrative interface, with each username matching the student's anonymous questionnaire code to enable per-student linkage across data streams.
 
-To support post-session analysis of student behavior, the research team developed a dedicated web-based reporting dashboard---\emph{UBI-Testing and Sabotage Reports}---designed specifically for this study.
-The dashboard accepts the game's JSON telemetry export as input and provides per-student and aggregate analysis views including: user activity timelines, daily statistics, progression summaries, and raw event inspection.
-Instructors can select individual students and view their testing and debugging actions in a structured, readable format without requiring manual inspection of raw JSON files.
-
+For supporting post-session analysis of student behavior, a dedicated web-based reporting dashboard---\emph{UBI-Testing and Sabotage Reports}---was developed by the research team, designed specifically for this study.
+The dashboard accepts the game's JSON telemetry export as input and provides per-student and aggregate analysis views, including: user activity timelines, daily statistics, progression summaries, and raw event inspection.
+It provides instructors with the ability to select individual students and view their testing and debugging actions in a structured, readable format without requiring manual inspection of raw JSON files.
 In parallel, the game's built-in administrative interface (\texttt{/admin}) integrates \emph{JavaMelody}~\cite{javamelody}, an open-source Java performance monitoring tool, which provided server-level visibility including HTTP request statistics, active session tracking, SQL query performance, and JVM resource usage during the classroom session~\cite{straubinger2025sojourner}.
-
-Together, the custom reporting dashboard and the server-level monitoring infrastructure allowed the research team to observe student engagement patterns in real time and conduct the detailed telemetry-based analysis reported in this study.
-This combination represents a practical, replicable model for deploying serious games at classroom scale with integrated learning analytics support.
+Together, the custom reporting dashboard and the server-level monitoring infrastructure allowed the research team to observe student engagement patterns in real time and conduct the detailed telemetry-based analysis reported in this study. This combination represents a practical, replicable model for deploying serious games at classroom scale with integrated learning analytics support.
 
 \subsection{Session Structure}
+The session lasted approximately 100 minutes, of which 45 minutes were an introductory lecture on software testing concepts, and the next approximately 45–50 minutes were devoted to guided gameplay, with 5–10 minutes allocated to completing pre- and post-activity questionnaires.
 
-The session lasted approximately 100~minutes: 45~minutes of introductory lecture on software testing concepts, 45--50~minutes of guided gameplay, and 5--10~minutes for pre and post-activity questionnaire completion.
+% The session took approximately 100~minutes: 45~minutes of introductory lecture on software testing concepts, 45--50~minutes of guided gameplay, and 5--10~minutes for pre and post-activity questionnaire completion.
 
 \subsection{Data Collection}
 
@@ -170,7 +162,6 @@ Table~\ref{tab:mcq} summarizes the MCQ results ($N = 21$ matched pairs, 22 pre, 
 The mean score increased from 8.29 to 9.14 out of 11 ($\Delta = +0.86$).
 The Wilcoxon test showed a positive trend ($Z = 1.601$, $p = 0.170$, $r = 0.349$, medium effect).
 Nevertheless, the medium effect size, positive normalized gains, and consistent improvements across complementary measures suggest meaningful educational benefits despite the lack of statistical significance.
-
 \begin{table}[htbp]
 \caption{MCQ Scores: Pre vs.\ Post ($N = 21$)}
 \label{tab:mcq}
@@ -187,7 +178,6 @@ Normalized gain & \multicolumn{3}{c}{0.246} \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 Sub-group analysis (Table~\ref{tab:subgroup}) reveals that low-baseline students ($< 8$) gained substantially (normalized gain = 0.50), while high-baseline students ($\geq 10$) showed no change, and mid-baseline students ($N=15$) showed moderate gains (0.244)---confirming the ceiling effect and suggesting an equity benefit from the game's scaffolding.
 
 \begin{table}[htbp]
@@ -334,7 +324,6 @@ The progression funnel (Fig.~\ref{fig:funnel}) shows that all students started R
 
 The 56~\emph{ComponentDestroyedEvent}s indicate cases where students' tests failed to detect sabotage, triggering hidden tests as scaffolding (36~events).
 This confirms the game's adaptive support mechanism was actively functioning.
-
 An exploratory correlation analysis ($N = 21$ students with matched telemetry and questionnaire data) revealed a significant positive association between game progression and MCQ gains (Spearman $\rho = 0.549$, $p = 0.006$; Fig.~\ref{fig:correlation}).
 Progression was also strongly correlated with test executions ($\rho = 0.912$, $p < 0.001$), confirming that advancement reflects genuine testing activity.
 
@@ -369,21 +358,23 @@ Future studies should use more challenging instruments calibrated to the target 
 Beyond the questionnaire-based findings, the game's telemetry provides objective behavioral evidence.
 The significant correlation between progression and MCQ gains ($\rho = 0.549$, $p = 0.006$) provides evidence that the game's design---where advancement requires genuine testing and debugging skill---translates behavioral engagement into measurable learning.
 The 36~hidden-test scaffolding events confirm that the game's adaptive support mechanism actively assisted struggling students, and the strong correlation between progression and test executions ($\rho = 0.912$) rules out passive navigation as an explanation.
-This telemetry-based analysis demonstrates a practical advantage of game-based platforms over traditional exercises: built-in learning analytics that enable formative assessment without additional instrumentation.
+The telemetry-based analysis demonstrates the practical advantage of game-based platforms over traditional exercises, as they are able to automatically record and analyze learning data, allowing for ongoing assessment of learning without the need for additional tools.
+
+
+% This telemetry-based analysis demonstrates a practical advantage of game-based platforms over traditional exercises: built-in learning analytics that enable formative assessment without additional instrumentation.
 
 \subsection{Qualitative Insights from Student Feedback}
+Students repeatedly cited the interactive aspects of the game as one of its strengths, especially the immediate feedback they received after testing and debugging. Many also stated that observing errors occur and subsequently fixing broken components themselves helped them better understand the difference between testing and debugging. This is a distinction that is not always clear in a typical lecture-based teaching. On the other hand, some students had some difficulty with the Java syntax and the complexity of debugging, suggesting that beginners need more guidance when starting to use such software games. In short, these qualitative insights are in line with the quantitative results and show how the learning process was experienced by students and why they found such activities engaging and educationally valuable.
 
-Qualitative feedback revealed several recurring themes.
-First, students valued the interactive nature of the game and the immediate feedback provided after testing and debugging actions.
-Second, multiple participants highlighted that observing failures and repairing sabotaged components helped them better distinguish testing from debugging---reinforcing concepts that are often difficult to convey through traditional lectures alone.
-Third, some students reported difficulties related to Java syntax and debugging complexity, suggesting that introductory scaffolding remains important when deploying the game with novice learners.
-Overall, the qualitative findings complement the quantitative results by illustrating how students experienced the learning process and why they perceived the activity as engaging and educationally valuable.
+
+% Students often pointed to the interactive parts of the game as one of its strengths, especially the immediate feedback they received after testing and debugging actions. Many also said that seeing failures happen, and then repairing the sabotaged components themselves, helped them better understand the difference between testing and debugging. This is a distinction that does not always come across clearly in a regular lecture. At the same time, some students struggled with Java syntax and the complexity of debugging, which suggests that beginners still need extra guidance when they start using the game. Overall, these qualitative insights line up with the quantitative results by showing how students experienced the learning process and why they found the activity engaging and educationally valuable.
 
 \subsection{Equity Through Scaffolding}
+Rather than providing uniform improvement for all students, this learning environment showed that students with lower baselines benefited the most (normalized benefit = 0.50 vs. 0.00 for higher baselines), indicating that the game’s scaffolding mechanisms, including robot hints, hidden tests, and progressive difficulty, provided support tailored to need and suggesting that this approach had a compensatory or equity-enhancing effect. This feature is particularly important for heterogeneous classrooms where students enter with different levels of prior knowledge.
 
-Low-baseline students benefited most (normalized gain = 0.50 vs.\ 0.00 for high-baseline), suggesting that the game's scaffolding mechanisms---robot hints, hidden tests, progressive difficulty---provide support proportional to need.
-Rather than uniformly improving all students, the game appeared particularly beneficial for students with lower initial knowledge, suggesting a compensatory or equity-enhancing effect.
-This dimension is particularly relevant for heterogeneous classrooms where students enter with varying levels of prior knowledge.
+% Low-baseline students benefited most (normalized gain = 0.50 vs.\ 0.00 for high-baseline), suggesting that the game's scaffolding mechanisms---robot hints, hidden tests, progressive difficulty---provide support proportional to need.
+% Rather than uniformly improving all students, the game appeared particularly beneficial for students with lower initial knowledge, suggesting a compensatory or equity-enhancing effect.
+% This dimension is particularly relevant for heterogeneous classrooms where students enter with varying levels of prior knowledge.
 
 \subsection{Practical Implications}
 
@@ -407,9 +398,9 @@ The reuse of identical MCQ items in pre- and post-tests may introduce a testing 
 The ceiling effect in the Sojourner MCQ limits the observable range of improvement.
 
 \textbf{Construct validity.}
-The cognitive load items mix positive and negative valence (one item was reverse-coded), and the resulting scale showed poor internal consistency ($\alpha < 0$), suggesting that these items may not reliably measure a single construct.
-Self-reported perception may not fully reflect actual learning.
-Cognitive load findings should therefore be interpreted descriptively rather than as a validated construct score.
+The cognitive load items mix positive and negative valence (one item is reverse-coded), and the resulting scale showed poor internal consistency($\alpha<0$), suggesting that these items may not reliably measure a single construct.
+Self-reported perception may not fully reflect actual learning. Cognitive load findings should be interpreted descriptively rather than as a validated construct score.
+
 
 \textbf{External validity.}
 The study was conducted with a single cohort ($N = 22$) at one institution, limiting the generalizability of findings to other populations or educational settings.
@@ -428,16 +419,13 @@ This paper presented an empirical evaluation of \emph{Sojourner under Sabotage} 
 The game produced high engagement (86\%), strong perceived learning (95\% for testing vs.\ debugging), and positive self-confidence shifts.
 While MCQ gains were limited by a ceiling effect, sub-group analysis revealed that low-baseline students benefited substantially (normalized gain = 0.50).
 Behavioral telemetry from 3,161 events further supported these findings, revealing a significant correlation between game progression and learning gains ($\rho = 0.549$, $p = 0.006$).
-
 These results provide independent evidence that Sojourner under Sabotage is an effective and engaging tool for software testing education, with built-in telemetry enabling formative assessment.
 Future work should evaluate the game in larger, multi-institutional studies with more discriminating knowledge instruments, and investigate long-term retention of testing skills.
 
 \section*{Data Availability}
-The replication package---including questionnaire data, in-game telemetry, and generated figures---is publicly available at: \url{https://github.com/aazaadef/Sojourner}
-
+The replication package is available at: \url{https://github.com/aazaadef/Sojourner}
 \section*{Acknowledgment}
 This work was supported by FCT -- Funda\c{c}\~{a}o para a Ci\^{e}ncia e Tecnologia, I.P.\ by project reference UIDB/50008/2020 (DOI: \url{https://doi.org/10.54499/UIDB/50008/2020}) and by the doctoral grant PRT/BD/155023/2023.
-The authors would also like to acknowledge the Promptme4Better project, funded by the European Union Erasmus+ Program and the Portugal National Agency under grant agreement number 2025-1-PT01-KA220-HED-000363565, and all partners involved in the project.
 The authors used generative AI tools solely to support English language polishing and readability improvements.
 All technical content, interpretations, and conclusions were created and verified by the authors, who take full responsibility for the final manuscript.
 
